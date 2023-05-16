@@ -38,7 +38,7 @@ function setup() {
       let x = (width / 4) * (r + 1);
       let y = height / 8;
       rotorButtonsForward[r] = createButton('>');
-      rotorButtonsForward[r].position(x + 40, y - 10);
+      rotorButtonsForward[r].position(x + 40, y + 80);
       rotorButtonsForward[r].mousePressed(() => {
         initialRotorPositions[r] = (initialRotorPositions[r] + 1) % 26;
         encodingRotorPositions = [...initialRotorPositions];
@@ -46,7 +46,7 @@ function setup() {
       });
   
       rotorButtonsBackward[r] = createButton('<');
-      rotorButtonsBackward[r].position(x - 60, y - 10);
+      rotorButtonsBackward[r].position(x - 60, y + 80);
       rotorButtonsBackward[r].mousePressed(() => {
         initialRotorPositions[r] = (initialRotorPositions[r] - 1 + 26) % 26;
         encodingRotorPositions = [...initialRotorPositions];
@@ -65,7 +65,7 @@ function setup() {
     // Draw rotor positions side by side
     for (let r = 0; r < 3; r++) {
       let x = (width / 4) * (r + 1);
-      let y = height / 8;
+      let y = height / 4;
       
       // Draw a rounded rectangle behind each rotor position
       rect(x, y, 140, 100, 20);  // 140x100px rectangles with 20px corner radius
@@ -76,13 +76,13 @@ function setup() {
     }
   
     // Draw rounded rectangles behind input and encoded messages
-    rect(width / 2, height / 2 - 20, textWidth(inputMessage) + 450, 150, 20);  // Rectangle for encoded message
+    rect(width / 2, height / 2 + 80, textWidth(inputMessage) + 450, 150, 20);  // Rectangle for encoded message
   
     fill(255);  // Set fill color back to white for the text
   
     // Display messages
-    text("Input: " + inputMessage, width / 2, height / 2 - 50);
-    text("Encoded / Decoded: " + encodedMessage, width / 2, height / 2);
+    text("Input: " + inputMessage, width / 2, height / 2 + 50);
+    text("Encoded / Decoded: " + encodedMessage, width / 2, height / 2 + 100);
   }
   
 
