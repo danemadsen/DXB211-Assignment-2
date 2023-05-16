@@ -38,7 +38,7 @@ function setup() {
       let x = (width / 4) * (r + 1);
       let y = height / 8;
       rotorButtonsForward[r] = createButton('>');
-      rotorButtonsForward[r].position(x + 40, y - 20);
+      rotorButtonsForward[r].position(x + 40, y - 10);
       rotorButtonsForward[r].mousePressed(() => {
         initialRotorPositions[r] = (initialRotorPositions[r] + 1) % 26;
         encodingRotorPositions = [...initialRotorPositions];
@@ -46,7 +46,7 @@ function setup() {
       });
   
       rotorButtonsBackward[r] = createButton('<');
-      rotorButtonsBackward[r].position(x - 60, y - 20);
+      rotorButtonsBackward[r].position(x - 60, y - 10);
       rotorButtonsBackward[r].mousePressed(() => {
         initialRotorPositions[r] = (initialRotorPositions[r] - 1 + 26) % 26;
         encodingRotorPositions = [...initialRotorPositions];
