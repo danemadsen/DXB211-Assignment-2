@@ -7,52 +7,81 @@ let inputMessage = "";
 let encodedMessage = "";
 let decodedMessage = "";
 
+let rotorButtonsForward = [];
+let rotorButtonsBackward = [];
+let backgroundImage;
+
+function preload() {
+    backgroundImage = loadImage('Background.png');
+}
+
 function setup() {
-  createCanvas(1280, 720);
-  textSize(32);
-  textAlign(CENTER, CENTER);
-  rotorSize = width / 26;
-
-  // Create rotors and reflector with substitution mappings
-  rotors = [
-    'BDFHJLCPRTXVZNYEIWGAKMUSQO'.split(''), // Rotor 1
-    'AJDKSIRUXBLHWTMCQGZNPYFVOE'.split(''), // Rotor 2
-    'EKMFLGDQVZNTOWYHXUSPAIBRCJ'.split('')  // Rotor 3
-  ];
-  reflector = 'YRUHQSLDPXNGOKMIEBFZCWVJAT'.split(''); // Reflector B
-}
-
-function draw() {
-  background(220);
-
-  // Draw rotors
-  for (let r = 0; r < 3; r++) {
-    for (let i = 0; i < 26; i++) {
-      let x = i * rotorSize;
-      let y = r * height / 4;
-      let letter = rotors[r][(i + encodingRotorPositions[r]) % 26];
-      text(letter, x + rotorSize / 2, y + rotorSize);
+    createCanvas(1280, 720);
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    fill(255);
+    rotorSize = width / 26;
+  
+    // Create rotors and reflector with substitution mappings
+    rotors = [
+      'BDFHJLCPRTXVZNYEIWGAKMUSQO'.split(''), // Rotor 1
+      'AJDKSIRUXBLHWTMCQGZNPYFVOE'.split(''), // Rotor 2
+      'EKMFLGDQVZNTOWYHXUSPAIBRCJ'.split('')  // Rotor 3
+    ];
+    reflector = 'YRUHQSLDPXNGOKMIEBFZCWVJAT'.split(''); // Reflector B
+  
+    // Create buttons for each rotor
+    for (let r = 0; r < 3; r++) {
+      let x = (width / 4) * (r + 1);
+      let y = height / 8;
+      rotorButtonsForward[r] = createButton('>');
+      rotorButtonsForward[r].position(x + 40, y - 20);
+      rotorButtonsForward[r].mousePressed(() => {
+        initialRotorPositions[r] = (initialRotorPositions[r] + 1) % 26;
+        encodingRotorPositions = [...initialRotorPositions];
+        encodeMessage();
+      });
+  
+      rotorButtonsBackward[r] = createButton('<');
+      rotorButtonsBackward[r].position(x - 60, y - 20);
+      rotorButtonsBackward[r].mousePressed(() => {
+        initialRotorPositions[r] = (initialRotorPositions[r] - 1 + 26) % 26;
+        encodingRotorPositions = [...initialRotorPositions];
+        encodeMessage();
+      });
     }
-
-    // Draw rotor position
-    text(encodingRotorPositions[r] + 1, width / 2, (r * height / 4) + rotorSize + 40);
   }
+  
 
-  // Display messages
-  text("Input: " + inputMessage, width / 2, 3 * height / 4 + 50);
-  text("Encoded / Decoded: " + encodedMessage, width / 2, 3 * height / 4 + 100);
-}
-
-function mouseClicked() {
-  let clickPosition = floor(mouseY / (height / 4));
-  if (clickPosition >= 0 && clickPosition < 3) {
-    if (mouseButton === LEFT) {
-        initialRotorPositions[clickPosition] = (initialRotorPositions[clickPosition] + 1) % 26;
+  function draw() {
+    background(backgroundImage);
+  
+    fill('#045b98ff');  // Set fill color for rectangles
+    rectMode(CENTER);    // Draw rectangles from the center
+  
+    // Draw rotor positions side by side
+    for (let r = 0; r < 3; r++) {
+      let x = (width / 4) * (r + 1);
+      let y = height / 8;
+      
+      // Draw a rounded rectangle behind each rotor position
+      rect(x, y, 140, 100, 20);  // 140x100px rectangles with 20px corner radius
+  
+      fill(255);  // Set fill color back to white for the text
+      text(encodingRotorPositions[r] + 1, x, y);
+      fill('#045b98ff');  // Set fill color back to rectangle color for the next rectangle
     }
-    encodingRotorPositions = [...initialRotorPositions];
-    encodeMessage();
+  
+    // Draw rounded rectangles behind input and encoded messages
+    rect(width / 2, height / 2 - 20, textWidth(inputMessage) + 350, 150, 20);  // Rectangle for encoded message
+  
+    fill(255);  // Set fill color back to white for the text
+  
+    // Display messages
+    text("Input: " + inputMessage, width / 2, height / 2 - 50);
+    text("Encoded / Decoded: " + encodedMessage, width / 2, height / 2);
   }
-}
+  
 
 function keyTyped() {
     if (keyCode >= 65 && keyCode <= 90 || keyCode >= 97 && keyCode <= 122) {
