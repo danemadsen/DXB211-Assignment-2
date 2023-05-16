@@ -10,13 +10,16 @@ let decodedMessage = "";
 let rotorButtonsForward = [];
 let rotorButtonsBackward = [];
 let backgroundImage;
+let cutiveFont;
 
 function preload() {
     backgroundImage = loadImage('Background.png');
+    cutiveFont = loadFont('CutiveMono-Regular.ttf');
 }
 
 function setup() {
     createCanvas(1280, 720);
+    textFont(cutiveFont);
     textSize(32);
     textAlign(CENTER, CENTER);
     fill(255);
@@ -73,7 +76,7 @@ function setup() {
     }
   
     // Draw rounded rectangles behind input and encoded messages
-    rect(width / 2, height / 2 - 20, textWidth(inputMessage) + 350, 150, 20);  // Rectangle for encoded message
+    rect(width / 2, height / 2 - 20, textWidth(inputMessage) + 450, 150, 20);  // Rectangle for encoded message
   
     fill(255);  // Set fill color back to white for the text
   
