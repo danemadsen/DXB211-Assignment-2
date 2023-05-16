@@ -50,6 +50,7 @@ function mouseClicked() {
         initialRotorPositions[clickPosition] = (initialRotorPositions[clickPosition] + 1) % 26;
     }
     encodingRotorPositions = [...initialRotorPositions];
+    encodeMessage();
   }
 }
 
