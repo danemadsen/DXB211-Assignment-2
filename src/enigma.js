@@ -55,11 +55,18 @@ function mouseClicked() {
 }
 
 function keyTyped() {
-  if (keyCode >= 65 && keyCode <= 90 || keyCode >= 97 && keyCode <= 122) {
-    let letter = String.fromCharCode(keyCode).toUpperCase();
-    inputMessage += letter;
-    encodeMessage();
-  }
+    if (keyCode >= 65 && keyCode <= 90 || keyCode >= 97 && keyCode <= 122) {
+        let letter = String.fromCharCode(keyCode).toUpperCase();
+        inputMessage += letter;
+        encodeMessage();
+    }
+}
+  
+function keyPressed() {
+    if (keyCode === BACKSPACE) {
+        inputMessage = inputMessage.slice(0, -1);
+        encodeMessage();
+    }
 }
 
 function encodeLetter(letter, rotorPositions) {
