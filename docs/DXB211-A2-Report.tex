@@ -6,12 +6,6 @@
 \usepackage[none]{hyphenat}
 \usepackage{hyperref}
 \usepackage[nameinlink]{cleveref}
-\usepackage[table]{xcolor}
-\usepackage[edges]{forest}
-
-\definecolor{darkgreen}{RGB}{0, 150, 0}
-\setlength{\fboxrule}{2pt}
-\crefname{figure}{Figure}{Figures}
 
 \begin{document}
 	\begin{titlepage}
@@ -30,5 +24,30 @@
 	\end{titlepage}
 	\tableofcontents
 	\newpage
+
+	\section{Introduction}
+		In WWII Germany, Enigma was an instrumental tool in the German war effort. 
+		Enigma was a machine used to encrypt and decrypt intelligence communications 
+		between German forces. The sketch created for this assignment aims to simulate 
+		the Enigma machines encryption and decryption process.\\
+		\\
+		To run this sketch you will need to run \texttt{python -m http.server} in the 
+		\texttt{src} folder of the project. Then navigate to \texttt{localhost:8000} 
+		in your web browser and open the \texttt{entry.html} file.\\
+		\\
+		To use the sketch, set the three rotors to the desired positions, then simply 
+		type and plain text will be displayed next to the \texttt{Input} heading along 
+		with the encrypted / decrypted text next to the \texttt{Encoded / Decoded} 
+		heading.\\
+
+		\begin{center}
+			\includegraphics[width=0.8\textwidth]{figures/figure1.jpg}\\
+			\vspace{0.5cm}
+			\includegraphics[width=0.8\textwidth]{figures/figure2.jpg}\\
+		\end{center}
+	
+	\newpage
+
+	\section{Design and Aesthetic}
 
 \end{document}
