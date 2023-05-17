@@ -3,9 +3,9 @@ let reflector;
 let initialRotorPositions = [0, 0, 0];
 let encodingRotorPositions = [0, 0, 0];
 let rotorSize;
-let inputMessage = "";
-let encodedMessage = "";
-let decodedMessage = "";
+
+let plainText = "";
+let cipherText = "";
 
 let rotorButtonsForward = [];
 let rotorButtonsBackward = [];
@@ -41,7 +41,6 @@ function setup() {
       rotorButtonsForward[r].position(x + 40, y + 90);
       rotorButtonsForward[r].mousePressed(() => {
         initialRotorPositions[r] = (initialRotorPositions[r] + 1) % 26;
-        encodingRotorPositions = [...initialRotorPositions];
         encodeMessage();
       });
   
@@ -49,7 +48,6 @@ function setup() {
       rotorButtonsBackward[r].position(x - 40, y + 90);
       rotorButtonsBackward[r].mousePressed(() => {
         initialRotorPositions[r] = (initialRotorPositions[r] - 1 + 26) % 26;
-        encodingRotorPositions = [...initialRotorPositions];
         encodeMessage();
       });
     }
@@ -75,27 +73,27 @@ function setup() {
       fill('#045b98ff');  // Set fill color back to rectangle color for the next rectangle
     }
   
-    // Draw rounded rectangles behind input and encoded messages
-    rect(width / 2, height / 2 + 80, textWidth(inputMessage) + 350, 150, 20);  // Rectangle for encoded message
+    // Draw rounded rectangles behind plain text and cipher text
+    rect(width / 2, height / 2 + 80, textWidth(plainText) + 350, 150, 20);
   
     fill(255);  // Set fill color back to white for the text
   
-    // Display messages
-    text("Plain Text: " + inputMessage, width / 2, height / 2 + 50);
-    text("Cipher Text: " + encodedMessage, width / 2, height / 2 + 100);
+    // Display Plain Text and Cipher Text
+    text("Plain Text: " + plainText, width / 2, height / 2 + 50);
+    text("Cipher Text: " + cipherText, width / 2, height / 2 + 100);
   }
 
 function keyTyped() {
     if (keyCode >= 65 && keyCode <= 90 || keyCode >= 97 && keyCode <= 122) {
         let letter = String.fromCharCode(keyCode).toUpperCase();
-        inputMessage += letter;
+        plainText += letter;
         encodeMessage();
     }
 }
   
 function keyPressed() {
     if (keyCode === BACKSPACE) {
-        inputMessage = inputMessage.slice(0, -1);
+        plainText = plainText.slice(0, -1);
         encodeMessage();
     }
 }
@@ -115,9 +113,9 @@ function encodeLetter(letter, rotorPositions) {
 
 function encodeMessage() {
     encodingRotorPositions = [...initialRotorPositions];
-    encodedMessage = "";
-    for (let i = 0; i < inputMessage.length; i++) {
-        encodedMessage += encodeLetter(inputMessage[i], encodingRotorPositions);
+    cipherText = "";
+    for (let i = 0; i < plainText.length; i++) {
+        cipherText += encodeLetter(plainText[i], encodingRotorPositions);
         encodingRotorPositions[0] = (encodingRotorPositions[0] + 1) % 26;
         if (i % 26 == 25) {
             encodingRotorPositions[1] = (encodingRotorPositions[1] + 1) % 26;
