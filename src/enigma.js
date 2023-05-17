@@ -76,7 +76,7 @@ function setup() {
     }
   
     // Draw rounded rectangles behind input and encoded messages
-    rect(width / 2, height / 2 + 80, textWidth(inputMessage) + 450, 150, 20);  // Rectangle for encoded message
+    rect(width / 2, height / 2 + 80, textWidth(inputMessage) + 350, 150, 20);  // Rectangle for encoded message
   
     fill(255);  // Set fill color back to white for the text
   
