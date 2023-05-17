@@ -1,6 +1,7 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage[utf8]{inputenc}
+\usepackage[backend=biber,style=apa]{biblatex}
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage[none]{hyphenat}
@@ -8,6 +9,10 @@
 \usepackage[nameinlink]{cleveref}
 
 \setlength{\fboxrule}{2pt}
+\addbibresource{references.bib}
+\setlength\bibitemsep{1.5\itemsep}
+\defbibheading{bibempty}{}
+
 
 \begin{document}
 	\begin{titlepage}
@@ -91,12 +96,10 @@
 
 	\section{Creative Influences}
 		The sketch has been designed to roughly resemble the style of the 
-		\href{https://www.asd.gov.au/}{Australian Signals Directorate (ASD)} website. 
-		The ASD is the intelligence agency of Australia responsible for conducting 
-		signals intelligence on behalf of the Australian Government. As such, 
+		\textcite{ASD2023} website. The ASD is the intelligence agency of Australia responsible 
+		for conducting signals intelligence on behalf of the Australian Government. As such, 
 		Cryptography is highly relevant to the ASD's work. Another source of styling was 
-		\href{https://www.qut.edu.au/study/information-technology?undergraduate}{QUT's own website} 
-		as QUT also uses alot of dark blue colours like the ASD.\\
+		the website of \textcite{QUT2023}, which shared a similar color scheme to the ASD website.\\
 		
 		\begin{center}
 			\fbox{\includegraphics[width=0.8\textwidth]{figures/figure3.jpg}}\\
@@ -106,6 +109,11 @@
 		\vspace{0.5cm}
 		The last influence of the sketch was the Enigma machine itself. For my sketch I used the same 
 		number of rotors and reflector as the most common Enigma machine in WWII which I obtained from 
-		a website called \href{https://www.cryptomuseum.com/crypto/enigma/wiring.htm}{Crypto Museum}.
+		a website called \textcite{CryptoMuseum2023}.
+	
+	\newpage
+
+	\section{References}
+	\printbibliography[heading=bibempty]
 
 \end{document}
