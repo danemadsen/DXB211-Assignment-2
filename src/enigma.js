@@ -81,10 +81,9 @@ function setup() {
     fill(255);  // Set fill color back to white for the text
   
     // Display messages
-    text("Input: " + inputMessage, width / 2, height / 2 + 50);
-    text("Encoded / Decoded: " + encodedMessage, width / 2, height / 2 + 100);
+    text("Plain Text: " + inputMessage, width / 2, height / 2 + 50);
+    text("Cipher Text: " + encodedMessage, width / 2, height / 2 + 100);
   }
-  
 
 function keyTyped() {
     if (keyCode >= 65 && keyCode <= 90 || keyCode >= 97 && keyCode <= 122) {
