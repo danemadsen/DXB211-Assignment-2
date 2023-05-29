@@ -1,0 +1,16 @@
+How to use the Enigma Machine
+
+1. Select your desired rotor settings
+You can click on the left and right buttons of each rotor to change their position.
+
+2. Type your message
+
+3. Write down the cipher text and give it to a friend without 
+   telling them which rotor settings you used.
+
+4. Let them attempt to decode your message by typing the cipher text with random rotor positions. 
+
+( Optional )
+Tell your friend what rotor settings you started with to allow them to decrypt and read 
+your message. To decode the message set the rotors back to the settings you used before you started 
+typing and type in the cipher text.
